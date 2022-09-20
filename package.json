@@ -1,0 +1,27 @@
+{
+  "name": "readcsvdata",
+  "version": "1.0.0",
+  "description": "software that reads the CSV data (of books, magazines, and authors)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmmarHamedAmmar/ReadCSVData.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmmarHamedAmmar/ReadCSVData/issues"
+  },
+  "homepage": "https://github.com/AmmarHamedAmmar/ReadCSVData#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "typescript": "^4.8.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "nodemon": "^2.0.20"
+  }
+}
