@@ -4,6 +4,7 @@ import {db} from '../dataStore/interface'
 
 
 export class books implements booksDao {
+
   public title!: string;
   public ISBN!: string;
   public authors!: string;
@@ -25,9 +26,8 @@ export class books implements booksDao {
     return db.getAllBooks()
   }
 
-
-  addBook(title: string, ISBN: string, authors: string, description: string) : void {
-    db.addBook(title , ISBN , authors , description)
-
-  }
+  
+  addBooks(title: string, ISBN: string, authors: string, description: string): void {
+    db.addBooks(title , ISBN , authors , description)
+}
 }

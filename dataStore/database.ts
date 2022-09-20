@@ -30,7 +30,7 @@ export class database implements dataStore {
         return this.booksData
     }
 
-    addBook(title: string, ISBN: string, authors: string, description: string): void {
+    addBooks(title: string, ISBN: string, authors: string, description: string): void {
         const Book : book =  {
             title: title,
             ISBN: ISBN,
@@ -38,6 +38,7 @@ export class database implements dataStore {
             description: description
         }
         this.booksData.push(Book)
+        //console.log(this.booksData)
     }
     
 }
