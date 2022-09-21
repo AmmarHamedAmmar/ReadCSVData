@@ -9,6 +9,54 @@ export class database implements dataStore {
     magazinesData: magazine[] = [];
     authorsData: author[] = [];
 
+    getAllMagazines(): magazine[]  {
+        return this.magazinesData ; 
+    }
+
+    getMagazineByISBN(ISBN: string): magazine | undefined {
+        for(let i = 0 ; i < this.magazinesData.length ; i++) {
+            if(this.magazinesData[i].ISBN == ISBN)
+                return this.magazinesData[i] ; 
+        }
+        return undefined 
+    }
+
+    addMagazine(title: string, ISBN: string, authors: string, publishedAt: string): void {
+        const magazine : magazine = {
+            title: title,
+            ISBN: ISBN,
+            authors:authors,
+            publishedAt: publishedAt
+        }
+
+        this.magazinesData.push(magazine)
+    }
+
+    getAuthorsByEmail(authorEmail: string): author[] {
+        let author : author[] = [] ; 
+
+    for(let i = 0 ; i < this.authorsData.length ; i++) {
+        if(this.authorsData[i].email = authorEmail)
+        author.push(this.authorsData[i]) ; 
+    }
+    return author 
+    }
+
+
+    getAllAuthors(): author[] {
+        return this.authorsData ; 
+    }
+
+    addauthors(firstName: string, lastName: string, email: string): void {
+        const author : author = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email
+        }
+
+        this.authorsData.push(author)
+    }
+
 
     getBooksByEmail(authorEmail: string): book[] {
         let authorBooks : book[] = [] ; 

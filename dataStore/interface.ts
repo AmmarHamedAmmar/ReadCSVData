@@ -1,10 +1,10 @@
 import { authorsDao } from "./DAO/authorsDao";
 import { booksDao } from "./DAO/booksDao";
-import { magazine } from "./DAO/magazinDao";
+import { magazineDao } from "./DAO/magazineDao";
 import { database } from "./database";
 
 
-export interface dataStore extends booksDao , authorsDao ,magazine {
+export interface dataStore extends booksDao , authorsDao ,magazineDao {
     
 }
 
