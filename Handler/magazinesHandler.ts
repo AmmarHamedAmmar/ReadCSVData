@@ -9,15 +9,8 @@ import { Parser } from 'json2csv';
 import { resolveModuleName } from 'typescript';
 
 export class magazines implements magazineDao {
-    [x: string]: any;
 
-    arr : any = []
-    x : any  ; 
 
-    constructor () {
-       
-
-    }
     getMagazineByISBN(ISBN: string): magazine | undefined {
         return db.getMagazineByISBN(ISBN)
     }
@@ -31,32 +24,24 @@ export class magazines implements magazineDao {
             authors: authors,
             publishedAt: publishedAt
         } 
-        //this.arr.push(mgzn)
-        
-
         db.addMagazine(title , ISBN , authors , publishedAt)
     }
     
-    async readMagazinesFile ( ) : Promise<this>  {
+    readMagazinesFile () : Promise<this>  {
 
         return new Promise ((resolve , reject) => {
             let magazineFileName = path.join(__dirname , '../Files/magazines.csv')
-            this.x  = fs.createReadStream(magazineFileName)
+            fs.createReadStream(magazineFileName)
             .pipe(parse({ delimiter: ";", from_line: 2 }))
             .on("data",  (row) => {
                 this.addMagazine(row[0] , row[1] , row[2] , row[3])
             })
             .on("end",  () => {
-            console.log("finished" , this.arr);
+            console.log("finished" );
             this.printMagazinesOnConsole()
             resolve(this)
             })
-            //resolve(this)
-
         }) 
-
-        console.log("this is ",this.arr)
-        return this  ;
     }
 
 
@@ -70,13 +55,9 @@ export class magazines implements magazineDao {
     
 
     printMagazinesOnConsole(){
-        //printTable(this.getAllMagazines())
+        printTable(this.getAllMagazines())
         
    }
-
-    returnThis(): any {
-    return this ; 
-}
 
 }
 

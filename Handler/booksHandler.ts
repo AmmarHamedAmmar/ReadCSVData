@@ -34,22 +34,27 @@ export class books implements booksDao {
     db.addBooks(title , ISBN , authors , description)
   }
 
-  readBooksFile() {
+  readBooksFile() : Promise<this> {
 
-    let booksFileName = path.join(__dirname , '../Files/books.csv')
-    fs.createReadStream(booksFileName)
-        .pipe(parse({ delimiter: ";", from_line: 2 }))
-        .on("data", function (row) {
-        new books().addBooks(row[0] , row[1] , row[2] , row[3])
+    return new Promise ((res, rej)=> {
+        let booksFileName = path.join(__dirname , '../Files/books.csv')
+        fs.createReadStream(booksFileName)
+            .pipe(parse({ delimiter: ";", from_line: 2 }))
+            .on("data", function (row) {
+            new books().addBooks(row[0] , row[1] , row[2] , row[3])
+    
+            })
+            .on("end",  () => {
+            console.log("finished");
+            //(new books().printBooksOnConsole())
+            res(this)
+            })
+            .on("error", function (error) {
+            console.log(error.message);
+            });
+    })
 
-        })
-        .on("end", function () {
-        console.log("finished");
-        (new books().printBooksOnConsole())
-        })
-        .on("error", function (error) {
-        console.log(error.message);
-        });
+
 }
 
    printBooksOnConsole(){
