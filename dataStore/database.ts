@@ -86,7 +86,12 @@ export class database implements dataStore {
             description: description
         }
         this.booksData.push(Book)
-        //console.log(this.booksData)
+    }
+
+
+    concatinateTwoJsons(){
+        Array.prototype.push.apply(this.booksData,this.magazinesData); 
+        console.log(this.booksData)
     }
     
 }
